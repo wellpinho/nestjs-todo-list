@@ -10,7 +10,7 @@ export class TasksService {
     return this.tasks;
   }
 
-  findOne(id: string) {
+  findOne(id: number) {
     const task = this.tasks.find((task) => task.id === Number(id));
 
     if (!task) {
@@ -29,7 +29,7 @@ export class TasksService {
     return this.tasks[this.tasks.length - 1];
   }
 
-  update(id: string, updateTaskDto: UpdateTaskDto) {
+  update(id: number, updateTaskDto: UpdateTaskDto) {
     const taskIndex = this.tasks.findIndex((task) => task.id === Number(id));
 
     if (taskIndex < 0) {
@@ -44,7 +44,7 @@ export class TasksService {
     return task;
   }
 
-  delete(id: string) {
+  delete(id: number) {
     const taskIndex = this.tasks.findIndex((task) => task.id === Number(id));
 
     if (taskIndex < 0) {

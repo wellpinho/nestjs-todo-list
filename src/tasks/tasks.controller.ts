@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -24,7 +25,8 @@ export class TasksController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  // ParseIntPipe valida se o id informado pelo client é do tipo number
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.taskService.findOne(id);
   }
 
@@ -34,12 +36,15 @@ export class TasksController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ) {
     return this.taskService.update(id, updateTaskDto);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.taskService.delete(id);
   }
 }
